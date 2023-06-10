@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dcr/Code/LearnOpenGL/lesson_one_CreateWindow/main.cpp
+glad/glad.h
+-
+GLFW/glfw3.h
+-
+iostream
+-
+

@@ -1,0 +1,3 @@
+/home/dcr/Code/LearnOpenGL/lesson_one_CreateWindow/build/CMakeFiles/rebuild_cache.dir
+/home/dcr/Code/LearnOpenGL/lesson_one_CreateWindow/build/CMakeFiles/edit_cache.dir
+/home/dcr/Code/LearnOpenGL/lesson_one_CreateWindow/build/CMakeFiles/opengl.dir

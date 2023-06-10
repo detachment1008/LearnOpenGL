@@ -1,0 +1,3 @@
+/home/dcr/Code/LearnOpenGL/lesson_three_CreateShader/build/CMakeFiles/rebuild_cache.dir
+/home/dcr/Code/LearnOpenGL/lesson_three_CreateShader/build/CMakeFiles/edit_cache.dir
+/home/dcr/Code/LearnOpenGL/lesson_three_CreateShader/build/CMakeFiles/opengl.dir

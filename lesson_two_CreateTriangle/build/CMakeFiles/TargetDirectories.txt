@@ -1,0 +1,3 @@
+/home/dcr/Code/LearnOpenGL/lesson_two_CreateTriangle/build/CMakeFiles/rebuild_cache.dir
+/home/dcr/Code/LearnOpenGL/lesson_two_CreateTriangle/build/CMakeFiles/edit_cache.dir
+/home/dcr/Code/LearnOpenGL/lesson_two_CreateTriangle/build/CMakeFiles/opengl.dir

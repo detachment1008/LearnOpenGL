@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dcr/Code/LearnOpenGL/ShaderClass_test/Shader.h
+glad/glad.h
+-
+iostream
+-
+fstream
+-
+sstream
+-
+string
+-
+
+/home/dcr/Code/LearnOpenGL/ShaderClass_test/main.cpp
+glad/glad.h
+-
+GLFW/glfw3.h
+-
+iostream
+-
+cmath
+-
+Shader.h
+/home/dcr/Code/LearnOpenGL/ShaderClass_test/Shader.h
+

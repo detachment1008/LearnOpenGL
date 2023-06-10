@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/dcr/Code/LearnOpenGL/lesson_three_CreateShader/main.cpp
+glad/glad.h
+-
+GLFW/glfw3.h
+-
+iostream
+-
+cmath
+-
+
