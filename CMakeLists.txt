@@ -5,7 +5,7 @@ project(opengl)
 include_directories(/usr/include)
 find_package(glfw3 REQUIRED)
 link_directories(/usr/lib/x86_64-linux-gnu/)
-file(GLOB project_file glad.c main.cpp)
+file(GLOB project_file ../glad.c main.cpp)
 add_executable(${PROJECT_NAME} ${project_file})
 target_link_libraries(${PROJECT_NAME}
     -lglfw
