@@ -1,5 +1,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <iostream>
 #include <string>
@@ -136,6 +139,13 @@ int main()
 
 	//core:we need to render
 	ourShader.use();
+	glm::mat4 transform = glm::mat4(1.0f);
+	transform = glm::translate(transform, glm::vec3(0.2f, 0.4f, 0.0f));
+	double time = glfwGetTime();
+	transform = glm::rotate(transform, (float)time * 30, glm::vec3(0.0f, 0.0f, 1.0f));
+	transform = glm::scale(transform, glm::vec3(0.5f, 0.5f, 0.5f));
+	unsigned int transLoc = glGetUniformLocation(ourShader.ID, "trans");
+	glUniformMatrix4fv(transLoc, 1, GL_FALSE, glm::value_ptr(transform));
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture1);
 	glActiveTexture(GL_TEXTURE1);
