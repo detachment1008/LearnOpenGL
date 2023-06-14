@@ -1,7 +1,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <iostream>
+#include <string>
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "../stb_image.h"
 
 #include "../Shader.h"
 
@@ -10,6 +17,9 @@ constexpr int HEIGHT = 600;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
+
+const std::string file1 = "F:/resource/wall.jpg";
+const std::string file2 = "F:/resource/awesomeface.png";
 
 int main()
 {
