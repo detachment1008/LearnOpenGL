@@ -17,10 +17,22 @@ constexpr int HEIGHT = 600;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window, glm::vec3 &cameraPos, glm::vec3 &cameraFront, glm::vec3 &cameraUp, float cameraSpeed);
-//void processInput(GLFWwindow* window);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 const std::string file1 = "F:/resource/wall.jpg";
 const std::string file2 = "F:/resource/awesomeface.png";
+
+float yaw = 0.f;
+float pitch = 0.f;
+float lastX = 0.f;
+float lastY = 0.f;
+
+bool firstMouse = true;
+
+glm::vec3 cameraFront = glm::vec3(0.f, 0.f, -1.f);
+
+float fov = 45.0f;
 
 int main()
 {
@@ -192,20 +204,23 @@ int main()
     ourShader.setInt("tex2", 1);
     
     glm::vec3 cameraPos = glm::vec3(0.f, 0.f, 3.f);
-    glm::vec3 cameraFront = glm::vec3(0.f, 0.f, -1.f);
     glm::vec3 cameraUp = glm::vec3(0.f, 1.f, 0.f);
     
     float deltaTime = 0.f; // 上一帧持续时间
     float lastFrame2 = 0.f; 
     float lastFrame = 0.f; // 上一帧开始的时间，即上上一帧结束的时间
     float currentTime = 0.f; // 上一帧结束的时间
+    
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    glfwSetCursorPosCallback(window, mouse_callback);
+    glfwSetScrollCallback(window, scroll_callback);
 
     while(!glfwWindowShouldClose(window))
     {
 	//start:process user input
 	currentTime = (float)glfwGetTime();
-	/*deltaTime = currentTime - lastFrame;
-    lastFrame = currentTime;*/
+	deltaTime = currentTime - lastFrame;
+	lastFrame = currentTime;
 	processInput(window, cameraPos, cameraFront, cameraUp, deltaTime * 2.5f);
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -224,7 +239,7 @@ int main()
 	
 	glm::mat4 projection = glm::mat4(1.0f);
 	float aspect_ratio = (float)WIDTH / (float)HEIGHT;
-	projection = glm::perspective(45.f, aspect_ratio, 0.1f, 100.0f);
+	projection = glm::perspective(fov, aspect_ratio, 0.1f, 100.0f);
 	ourShader.setMat4("projection_in_GPU", projection);
 
 	glm::mat4 orthogonality = glm::mat4(1.0f);
@@ -292,4 +307,44 @@ void processInput(GLFWwindow* window, glm::vec3 &cameraPos, glm::vec3 &cameraFro
 	cameraPos += cameraSpeed * glm::normalize(glm::cross(cameraFront, cameraUp));
     }
     
+}
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if(firstMouse)
+    {
+	lastX = xpos;
+	lastY = ypos;
+	firstMouse = false;
+    }
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos;
+    lastX = xpos;
+    lastY = ypos;
+
+    float sensitivity = 0.05f;
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    yaw += xoffset;
+    pitch += yoffset;
+
+    if(pitch > 89.0f)
+	pitch = 89.0f;
+    if(pitch < -89.0f)
+	pitch = -89.0f;
+
+    glm::vec3 front;
+    front.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
+    front.y = sin(glm::radians(pitch));
+    front.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
+    cameraFront = glm::normalize(front);
+}
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    if(fov >= 1.0f && fov <= 45.0f)
+	fov -= yoffset;
+    if(fov <= 1.0f)
+	fov = 1.0f;
+    if(fov >= 45.0f)
+	fov = 45.0f;
 }
