@@ -11,6 +11,7 @@
 #include "../stb_image.h"
 
 #include "../Shader.h"
+#include "../Camera.h"
 
 constexpr int WIDTH = 800;
 constexpr int HEIGHT = 600;
@@ -23,7 +24,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 const std::string file1 = "F:/resource/wall.jpg";
 const std::string file2 = "F:/resource/awesomeface.png";
 
-float yaw = 0.f;
+float yaw = -90.f;
 float pitch = 0.f;
 float lastX = 0.f;
 float lastY = 0.f;
@@ -32,7 +33,7 @@ bool firstMouse = true;
 
 glm::vec3 cameraFront = glm::vec3(0.f, 0.f, -1.f);
 
-float fov = 45.0f;
+float fov = 25.0f;
 
 int main()
 {
