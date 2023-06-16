@@ -16,7 +16,7 @@ enum Camera_Movement {
 
 const float YAW = -90.f;
 const float PITCH = 0.f;
-const float SPEED = 2.5f;
+const float SPEED = 0.5f;
 const float SENSITIVITY = 0.1f;
 const float ZOOM = 45.0f;
 
@@ -73,6 +73,7 @@ Camera::Camera(float posX, float posY, float posZ, float upX, float upY, float u
 // returns the view matrix calculated using Euler Angles and the LookAt Matrix
 glm::mat4 Camera::GetViewMatrix()
 {
+    glm::vec3 t = Position + Front;
     return glm::lookAt(Position, Position + Front, Up);
 }
 
